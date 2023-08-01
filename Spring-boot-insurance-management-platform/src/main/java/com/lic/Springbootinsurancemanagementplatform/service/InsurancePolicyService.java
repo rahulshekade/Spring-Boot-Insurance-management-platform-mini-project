@@ -32,5 +32,39 @@ public class InsurancePolicyService {
 			responseStructure.setData(null);
 			return responseStructure;
 		}
+	}
+	
+	// getByInsurancePolicyId------------------------------------------------------------
+	public ResponseStructure<InsurancePolicy> getByInsurancePolicyId(int insurancePolicyId) {
+		InsurancePolicy insurancePolicy = insurancePolicyDao.getByInsurancePolicyId(insurancePolicyId);
+		
+		if(insurancePolicy != null) {
+			responseStructure.setStatusCode(HttpStatus.FOUND.value());
+			responseStructure.setMsg("data fetch successfull, data is available");
+			responseStructure.setData(insurancePolicy);
+			return responseStructure;
+		}else {
+			responseStructure.setStatusCode(HttpStatus.NOT_FOUND.value());
+			responseStructure.setMsg("please check your id which you are given");
+			responseStructure.setData(null);
+			return responseStructure;
+		}
+	}
+	
+	// update Insurance Policy------------------------------------------------------------
+	public ResponseStructure<InsurancePolicy> updateInsurancePolicy(InsurancePolicy insurancePolicy, int insurancePolicyId) {
+		InsurancePolicy insurancePolicy2 = insurancePolicyDao.updateInsurancePolicy(insurancePolicy, insurancePolicyId);
+		
+		if(insurancePolicy2 != null) {
+			responseStructure.setStatusCode(HttpStatus.ACCEPTED.value());
+			responseStructure.setMsg("Data is updated suceesfully because id is present");
+			responseStructure.setData(insurancePolicy2);
+			return responseStructure;
+		}else {
+			responseStructure.setStatusCode(HttpStatus.NOT_ACCEPTABLE.value());
+			responseStructure.setMsg("given id is not present in database");
+			responseStructure.setData(null);
+			return responseStructure;
+		}
 	}	
 }
