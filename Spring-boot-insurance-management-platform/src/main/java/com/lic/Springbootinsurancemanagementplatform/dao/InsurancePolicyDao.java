@@ -1,5 +1,6 @@
 package com.lic.Springbootinsurancemanagementplatform.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,23 @@ public class InsurancePolicyDao {
 			return null;
 		}
 		
+	}
+	
+	// delete Insurance Policy---------------------------------------------------------------
+	public InsurancePolicy deleteInsurancePolicy(InsurancePolicy insurancePolicy, int policyId){
+		Optional<InsurancePolicy> optional = insurancePolicyRepository.findById(policyId);
+		
+		if(optional.isPresent()) {
+			insurancePolicyRepository.delete(optional.get());
+			return insurancePolicy;
+		}else {
+			return null;
+		}
+	}
+	
+	//display InsuarncePolicy-------------------------------------------------------------------
+	public List<InsurancePolicy> displayAllPolicy(){
+		return insurancePolicyRepository.findAll();
 	}
 
 }
