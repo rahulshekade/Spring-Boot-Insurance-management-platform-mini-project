@@ -1,8 +1,13 @@
 package com.lic.Springbootinsurancemanagementplatform.dto;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,11 +36,11 @@ public class InsurancePolicy {
 	@Column(name ="policyEndDate")
 	private String insurancePolicyEndDate;
 
-//	@OneToMany(mappedBy = "insurancePolicy", cascade = CascadeType.ALL)
-//	private List<Client> clients;
-//	
-//	@OneToOne(mappedBy = "insurancePolicy")
-//	private Claim claim;
+	@OneToMany(mappedBy = "insurancePolicy", cascade = CascadeType.ALL)
+	private List<Client> clients;
+	
+	@OneToOne(mappedBy = "insurancePolicy")
+	private Claim claim;
 
 	public int getInsurancePolicyId() {
 		return insurancePolicyId;
