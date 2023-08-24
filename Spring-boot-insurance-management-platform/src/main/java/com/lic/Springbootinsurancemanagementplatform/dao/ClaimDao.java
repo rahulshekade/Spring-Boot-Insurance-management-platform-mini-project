@@ -1,5 +1,6 @@
 package com.lic.Springbootinsurancemanagementplatform.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,4 +44,13 @@ public class ClaimDao {
 	}
 	
 	
+	// update Claim------------------------------------------------------------------------------
+	public Claim updateClaim(Claim claim) {
+		return claimRepository.save(claim);
+	}
+	
+	//displayAllClaim----------------------------------------------------------------------------
+	public List<Claim> displayAllClaim(){
+		return claimRepository.findAll();
+	}
 }
